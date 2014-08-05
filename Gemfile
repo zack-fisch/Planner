@@ -60,4 +60,7 @@ end
 
 group :development do
 	gem 'pry-rails'
+	gem 'nokogiri', '1.6.3.1'
 end
+
+
