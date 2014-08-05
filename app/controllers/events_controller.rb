@@ -12,6 +12,7 @@ class EventsController < ApplicationController
 		@event = Event.new(event_params)
 		if @event.save
 			redirect_to events_path
+			flash[:notice] = "New Event Created"
 		end
 	end
 
@@ -22,12 +23,19 @@ class EventsController < ApplicationController
 	def update
 		@event = Event.find(params[:id])
 			if @event.update(event_params)
-				redirect_to @event, notice: 'Event Updated'
+				redirect_to @event
+				flash[:notice] = "Event Updated"
 			end
 	end
 
 	def show
 		@event = Event.find(params[:id])
+	end
+
+	def destroy
+		@event = Event.find(params[:id])
+		@event.destroy
+		redirect_to events_path, notice: 'Event destroyed!'
 	end
 
 	private
